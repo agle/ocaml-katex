@@ -5,25 +5,24 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github agle/ocaml-katex))
 
-(authors "Author Name <author@example.com>")
+(authors "Alicia M <a.michael1@uq.edu.au>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "Alicia M <a.michael1@uq.edu.au>")
 
-(license LICENSE)
+(license BSD-2-Clause)
 
-(documentation https://url/to/documentation)
+(documentation https://github.com/agle/ocaml-katex)
 
 (package
  (name ocaml-katex)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Offline KaTeX transform for cmarkit")
+ (description "Offline KaTeX transform for cmarkit based on QuickJS")
  (depends 
    cmarkit
    ocaml
-   ppx_blob)
+   ppx_blob
+   quickjs_eval)
  (tags
-  ("add topics" "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
+  ("latex", "html", "markdown")))
