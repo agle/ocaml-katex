@@ -1,0 +1,7 @@
+(library
+ (public_name ocaml-katex)
+ (name katex)
+ (libraries quickjs_eval cmarkit)
+ (preprocessor_deps (file vendor/katex.js))
+ (preprocess (pps ppx_blob))
+ )
