@@ -5,12 +5,16 @@ open struct
 end
 
 let create () =
-  let rt = JS.js_NewRuntime () in
-  let ctx = JS.js_NewContext rt in
-  ignore @@ eval_str ctx blob "katex.min.js";
-  ctx
+  let run () =
+    let rt = JS.js_NewRuntime () in
+    let ctx = JS.js_NewContext rt in
+    ignore @@ eval_str ctx blob "katex.min.js";
+    ctx
+  in
+  lazy (run ())
 
 let eval_katex ctx ?(display = false) tex =
+  let ctx = Lazy.force ctx in
   let b = if display then "true" else "false" in
   let e = new_string ctx tex in
   let f =
