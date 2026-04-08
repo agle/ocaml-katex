@@ -17,8 +17,13 @@ let eval_katex ctx ?(display = false) tex =
     JS.js_json_stringify ctx e (JS.js_value_null ()) (JS.js_value_null ())
   in
   let s = JS.js_to_cstring ctx f in
-  let tex = Option.get s in
-  let s = Printf.sprintf "katex.renderToString(%s, {displayMode: %s})" tex b in
+  let tex_escaped = Option.get s in
+  let s =
+    Printf.sprintf
+      "katex.renderToString(%s, {displayMode: %s, throwOnError: false})"
+      tex_escaped b
+  in
+  print_endline s;
   try eval_str_ret_str ctx s |> Option.to_result ~none:"Nothing returned"
   with QuickJSEerror m -> Error m
 
